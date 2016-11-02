@@ -17,4 +17,9 @@ public interface HackathonRepository {
 	void delete(Hackathon hackathon);
 
 	Hackathon update(Hackathon hackathon);
+
+    //JPQL
+    List<Hackathon> findByNameAndDescription(String name, String description);
+
+	List<Hackathon> findByName(String name);
 }

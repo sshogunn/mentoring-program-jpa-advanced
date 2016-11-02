@@ -1,9 +1,6 @@
 package com.epam.trainings.mentoring.jpa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,10 @@ public class ProjectIdea extends AbstractIdentified {
 
 	@ManyToMany(mappedBy = "projectIdeas")
 	private List<Hackathon> hackathons;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AUTHOR")
+	private Author author;
 
 	public String getName() {
 		return this.name;
@@ -32,4 +33,11 @@ public class ProjectIdea extends AbstractIdentified {
 		this.hackathons = hackathons;
 	}
 
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 }
