@@ -5,6 +5,7 @@ import com.epam.trainings.mentoring.jpa.domain.AbstractIdentified;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class LazyPoliceman extends AbstractIdentified {
     private List<Document> documents = new ArrayList<>();
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Donut> donuts = new ArrayList<>();
+
+    @OneToOne(mappedBy = "lazyPoliceman", fetch = FetchType.LAZY)
+    private PolicemanEquipment policemanEquipment;
 
     public String getFirstName() {
         return firstName;
@@ -47,5 +51,13 @@ public class LazyPoliceman extends AbstractIdentified {
 
     public void setDonuts(List<Donut> donuts) {
         this.donuts = donuts;
+    }
+
+    public PolicemanEquipment getPolicemanEquipment() {
+        return policemanEquipment;
+    }
+
+    public void setPolicemanEquipment(PolicemanEquipment policemanEquipment) {
+        this.policemanEquipment = policemanEquipment;
     }
 }
